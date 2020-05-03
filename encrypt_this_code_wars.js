@@ -15,6 +15,15 @@ encryptThis("good") === "103doo"
 encryptThis("hello world") === "104olle 119drlo"
 */
 
-var encryptThis = function(text) {
-  // Implement me! :)
+const encryptThis = (text) => {
+  let strArr = text.split(' ');
+  console.log('here is strArr before loop: ' + strArr);
+  for(let i = 0; i < strArr.length; i++) {
+    strArr[i][0] = strArr[i][0].charCodeAt();
+    let placeHolder = strArr[i][1];
+    strArr[i][1] = strArr[i][strArr[i].length - 1];
+    strArr[i][strArr[i].length - 1] = placeHolder;
+  }
+  console.log('here is strArr after loop: ' + strArr);
+  return strArr.join();
 }
