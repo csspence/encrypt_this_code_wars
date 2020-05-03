@@ -16,14 +16,35 @@ encryptThis("hello world") === "104olle 119drlo"
 */
 
 const encryptThis = (text) => {
-  let strArr = text.split(' ');
-  console.log('here is strArr before loop: ' + strArr);
-  for(let i = 0; i < strArr.length; i++) {
-    strArr[i][0] = strArr[i][0].charCodeAt();
-    let placeHolder = strArr[i][1];
-    strArr[i][1] = strArr[i][strArr[i].length - 1];
-    strArr[i][strArr[i].length - 1] = placeHolder;
+  if(text.length === 1) {
+    return text.charCodeAt().toString();
   }
+  let strArr = text.split(' ');
+  const innerFunc = (str) => {
+    let newStr = '';
+    if(str.length === 1) {
+      return str.charCodeAt(0).toString();
+    }
+    for(let h = 0; h < str.length; h++) {
+      if(h = 0) {
+        newStr += str[0].charCodeAt().toString();
+      }
+      if(h = 1) {
+        newStr += str[str.length - 1];
+      }
+      if(h = str.length - 1) {
+        newStr += str[1];
+      }
+      if(h !== 0 && h !== 1 && h !== str.length - 1) {
+        newStr += str[h];
+      }
+    }
+    return newStr;
+  }
+  for(let i = 0; i < strArr.length; i++) {
+     strArr[i] = innerFunc(strArr[i]);
+  }
+  
   console.log('here is strArr after loop: ' + strArr);
   return strArr.join();
 }
