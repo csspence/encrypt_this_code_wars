@@ -29,11 +29,14 @@ const encryptThis = (text) => {
     }
     let newStr = str.charCodeAt(0).toString();
     newStr += str[final];
-    for(let h = 2; h < str.length - 1; h++) {
-      console.log('Inside loop.  Here is str[h]: ' + str[h]);
-      newStr += str[h];
+    if(str.length > 2) {
+      for(let h = 2; h < str.length - 1; h++) {
+        console.log('Inside loop.  Here is str[h]: ' + str[h]);
+        newStr += str[h];
+      }
+      newStr += str[1];
     }
-    newStr += str[1];
+    
     return newStr;
   }
 
@@ -41,5 +44,5 @@ const encryptThis = (text) => {
      newArr.push(innerFunc(strArr[i]));
   }
 
-  return newArr.join('');
+  return newArr.join(' ');
 }
