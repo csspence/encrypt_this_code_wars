@@ -20,6 +20,8 @@ const encryptThis = (text) => {
     return text.charCodeAt().toString();
   }
   let strArr = text.split(' ');
+  let newArr = [];
+
   const innerFunc = (str) => {
     let newStr = '';
     if(str.length === 1) {
@@ -27,24 +29,21 @@ const encryptThis = (text) => {
     }
     for(let h = 0; h < str.length; h++) {
       if(h = 0) {
-        newStr += str[0].charCodeAt().toString();
-      }
-      if(h = 1) {
-        newStr += str[str.length - 1];
-      }
-      if(h = str.length - 1) {
-        newStr += str[1];
-      }
-      if(h !== 0 && h !== 1 && h !== str.length - 1) {
-        newStr += str[h];
+        newStr = newStr + str[0].charCodeAt();
+      } else if(h = 1) {
+        newStr = newStr + str[str.length - 1];
+      } else if(h = str.length - 1) {
+        newStr = newStr + str[1];
+      } else {
+        newStr = newStr + str[h];
       }
     }
     return newStr;
   }
+
   for(let i = 0; i < strArr.length; i++) {
-     strArr[i] = innerFunc(strArr[i]);
+     newArr.push(innerFunc(strArr[i]));
   }
-  
-  console.log('here is strArr after loop: ' + strArr);
-  return strArr.join();
+
+  return newArr.join();
 }
