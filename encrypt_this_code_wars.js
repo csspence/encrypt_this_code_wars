@@ -23,21 +23,17 @@ const encryptThis = (text) => {
   let newArr = [];
 
   const innerFunc = (str) => {
-    let newStr = '';
+    let final = str.length - 1;
     if(str.length === 1) {
       return str.charCodeAt(0).toString();
     }
-    for(let h = 0; h < str.length; h++) {
-      if(h = 0) {
-        newStr = newStr + str[0].charCodeAt();
-      } else if(h = 1) {
-        newStr = newStr + str[str.length - 1];
-      } else if(h = str.length - 1) {
-        newStr = newStr + str[1];
-      } else {
-        newStr = newStr + str[h];
-      }
+    let newStr = str.charCodeAt(0).toString();
+    newStr += str[final];
+    for(let h = 2; h < str.length - 1; h++) {
+      console.log('Inside loop.  Here is str[h]: ' + str[h]);
+      newStr += str[h];
     }
+    newStr += str[1];
     return newStr;
   }
 
@@ -45,5 +41,5 @@ const encryptThis = (text) => {
      newArr.push(innerFunc(strArr[i]));
   }
 
-  return newArr.join();
+  return newArr.join('');
 }
